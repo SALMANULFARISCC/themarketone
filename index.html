@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glory Board</title>
+    <meta name="description" content="Glory Board - Logo product name as glory board">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico"> <!-- Optional -->
+</head>
+
+<body>
+
+    <!-- Navigation Dots -->
+    <nav class="nav-dots">
+        <div class="nav-dot active" onclick="document.querySelector('.hero').scrollIntoView({behavior: 'smooth'})">
+        </div>
+        <div class="nav-dot" onclick="document.querySelector('.portfolio').scrollIntoView({behavior: 'smooth'})"></div>
+        <div class="nav-dot" onclick="document.querySelector('.contact').scrollIntoView({behavior: 'smooth'})"></div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <img src="assets/logo.png" alt="The Market One Logo" class="hero-logo">
+        <h1 class="hero-text"><strong>Hello.</strong>You've reached the market one</h1>
+
+    </header>
+
+    <!-- Portfolio Section -->
+    <section class="portfolio">
+        <h2 class="portfolio-header">Portfolio</h2>
+        <div class="grid">
+            <!-- Glory Board Product -->
+            <!-- Glory Board Product -->
+            <a href="glory-board.html" class="product-card">
+                <div class="product-icon">
+                    <img src="assets/g-icon.png" alt="Glory Board Logo" class="g-icon-img">
+                </div>
+                <h3 class="product-title">
+                    Glory Board
+                    <i class="fa-solid fa-arrow-up-right-from-square link-icon"></i>
+                </h3>
+                <p class="product-desc">Logo product name as glory board</p>
+            </a>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact">
+        <p class="contact-text">
+            Other inquiries? Email <a href="mailto:themarketoneofficial@gmail.com"
+                class="email-link">themarketoneofficial@gmail.com</a>
+        </p>
+
+        <div class="social-links">
+            <!-- Instagram -->
+            <a href="#" target="_blank" class="social-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                </svg>
+            </a>
+            <!-- X (Twitter) -->
+            <a href="#" target="_blank" class="social-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <path d="M4 4l11.733 16h4.267l-11.733 -16z"></path>
+                    <path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772"></path>
+                </svg>
+            </a>
+            <!-- YouTube -->
+            <a href="#" target="_blank" class="social-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <path
+                        d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z">
+                    </path>
+                    <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon>
+                </svg>
+            </a>
+            <!-- LinkedIn -->
+            <a href="#" target="_blank" class="social-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                    <rect x="2" y="9" width="4" height="12"></rect>
+                    <circle cx="4" cy="4" r="2"></circle>
+                </svg>
+            </a>
+        </div>
+    </section>
+
+    <!-- Script for active dot navigation (Simple scrollspy) -->
+    <script>
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('header, section');
+            const dots = document.querySelectorAll('.nav-dot');
+
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (pageYOffset >= sectionTop - 60) {
+                    current = section.getAttribute('class');
+                    // Simple mapping since classes are 'hero' and 'portfolio'
+                }
+            });
+
+            // This is a naive implementation, a more robust one would use IntersectionObserver
+            // But for 2 sections, checking visual position is simpler for now.
+            // Since we don't have unique IDs on sections in naive check, let's use IntersectionObserver for clear "active" state.
+        });
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const dots = document.querySelectorAll('.nav-dot');
+                    dots.forEach(d => d.classList.remove('active'));
+
+                    if (entry.target.classList.contains('hero')) {
+                        dots[0].classList.add('active');
+                    } else if (entry.target.classList.contains('portfolio')) {
+                        dots[1].classList.add('active');
+                    } else if (entry.target.classList.contains('contact')) {
+                        dots[2].classList.add('active');
+                    }
+                }
+            });
+        }, { threshold: 0.5 });
+
+        document.querySelectorAll('header, section').forEach((section) => {
+            observer.observe(section);
+        });
+    </script>
+
+</body>
+
+</html>
