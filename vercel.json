@@ -2,7 +2,7 @@
   "cleanUrls": true,
   "redirects": [
     {
-      "source": "/glory-board.html",
+      "source": "/gloryboard.html",
       "destination": "/gloryboard",
       "permanent": true
     }
