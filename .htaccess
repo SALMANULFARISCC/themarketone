@@ -1,6 +1,0 @@
-RewriteEngine On
-
-Redirect 301 /glory-board.html /gloryboard
-
-RewriteCond %{REQUEST_FILENAME}.html -f
-RewriteRule ^(.+)$ $1.html [L]
